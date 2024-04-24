@@ -2,7 +2,12 @@ const express = require("express");
 // const ParseServer = require('parse-server').ParseServer;
 // const ParseDashboard = require('parse-dashboard');
 const fs = require("fs");
-const pk = fs.readFileSync("./E771B5057075089B67FE5062EEA6AFAE.txt")
+const https = require('https')
+
+const options = {
+    key: fs.readFileSync(path.join(__dirname, 'private.key')),
+    cert: fs.readFileSync(path.join(__dirname, 'certificate.crt')),
+  };
 
 const app = express();
 const port = 3000;
@@ -32,10 +37,6 @@ const port = 3000;
 // app.use('/parse', api.app)
 // app.use('/dashboard', dashboardConfig)
 
-app.get("/.well-known/pki-validation/E771B5057075089B67FE5062EEA6AFAE.txt", (req, res) => {
-    res.sendFile("/home/ubuntu/simple-node-app/E771B5057075089B67FE5062EEA6AFAE.txt")
-})
-
 
 
 app.get('/api', (req, res) => {
@@ -47,3 +48,6 @@ app.get('/api', (req, res) => {
 app.listen(port, () => {
     console.log("server listening to port:", port)
 })
+
+const server = https.createServer(options, app)
+server.listen(443, () => console.log('Server running on port 443'))
