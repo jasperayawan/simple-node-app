@@ -1,6 +1,6 @@
 const express = require("express");
-// const ParseServer = require('parse-server').ParseServer;
-// const ParseDashboard = require('parse-dashboard');
+const ParseServer = require('parse-server').ParseServer;
+const ParseDashboard = require('parse-dashboard');
 const path = require("path");
 const fs = require("fs");
 const https = require('https')
@@ -14,29 +14,29 @@ const app = express();
 const port = 3000;
 
 
-// const api = new ParseServer({
-//     databaseURI: "mongodb+srv://ejayawan22:kuKvYG2VfIEss9Fj@cluster0.yjbhaod.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
-//     appId: "123",
-//     masterKey: "1234",
-//     serverURL: `http://localhost:3000/parse`,
-//     appName: "simple-node-app",
-// })
+const api = new ParseServer({
+    databaseURI: "mongodb+srv://ejayawan22:kuKvYG2VfIEss9Fj@cluster0.yjbhaod.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+    appId: "123",
+    masterKey: "1234",
+    serverURL: `http://localhost:3000/parse`,
+    appName: "simple-node-app",
+})
 
-// const dashboardConfig = new ParseDashboard({
-//     apps: [
-//         {
-//             appId: "123",
-//             masterKey: "1234",
-//             serverURL: `http://localhost:3000/parse`,
-//             appName: "simple-node-app"
-//         }
-//     ]
-// })
+const dashboardConfig = new ParseDashboard({
+    apps: [
+        {
+            appId: "123",
+            masterKey: "1234",
+            serverURL: `http://localhost:3000/parse`,
+            appName: "simple-node-app"
+        }
+    ]
+})
 
-// api.start();
+api.start();
 
-// app.use('/parse', api.app)
-// app.use('/dashboard', dashboardConfig)
+app.use('/parse', api.app)
+app.use('/dashboard', dashboardConfig)
 
 
 
