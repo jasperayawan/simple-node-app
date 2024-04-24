@@ -17,7 +17,7 @@ const parseServerOptions = {
   databaseURI: "mongodb+srv://ejayawan22:kuKvYG2VfIEss9Fj@cluster0.yjbhaod.mongodb.net/?retryWrites=true&w=majority",
   appId: "123",
   masterKey: "1234",
-  serverURL: `http://localhost:3000/parse`,
+  serverURL: `https://54.160.165.190/parse`,
   appName: "simple-node-app"
 };
 
@@ -28,7 +28,7 @@ const dashboardConfig = {
     {
       appId: "123",
       masterKey: "1234",
-      serverURL: `http://localhost:3000/parse`,
+      serverURL: `https://54.160.165.190/parse`,
       appName: "simple-node-app"
     }
   ]
