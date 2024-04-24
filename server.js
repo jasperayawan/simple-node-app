@@ -1,5 +1,5 @@
 const express = require("express");
-const ParseServer = require('parse-server').ParseServer;
+const { ParseServer } = require('parse-server');
 const ParseDashboard = require('parse-dashboard');
 const path = require("path");
 const fs = require("fs");
@@ -13,13 +13,15 @@ const options = {
 const app = express();
 const port = 3000;
 
-const api = new ParseServer({
+const parseServerOptions = {
   databaseURI: "mongodb+srv://ejayawan22:kuKvYG2VfIEss9Fj@cluster0.yjbhaod.mongodb.net/?retryWrites=true&w=majority",
   appId: "123",
   masterKey: "1234",
   serverURL: `http://localhost:3000/parse`,
   appName: "simple-node-app"
-});
+};
+
+const api = new ParseServer(parseServerOptions);
 
 const dashboardConfig = {
   apps: [
@@ -32,7 +34,7 @@ const dashboardConfig = {
   ]
 };
 
-app.use('/parse', new ParseServer(api));
+app.use('/parse', api);
 
 app.use('/dashboard', new ParseDashboard(dashboardConfig));
 
