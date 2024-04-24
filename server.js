@@ -1,8 +1,6 @@
 const express = require("express");
 const { ParseServer } = require('parse-server');
 const ParseDashboard = require('parse-dashboard');
-const dotenv = require('dotenv')
-
 const path = require("path");
 const fs = require("fs");
 const https = require('https');
@@ -12,13 +10,11 @@ const options = {
   cert: fs.readFileSync(path.join(__dirname, 'certificate.crt')),
 };
 
-dotenv.config()
 const app = express();
 const port = 3000;
 
-
 const parseServerOptions = {
-  databaseURI: process.env.MONGO_URI,
+  databaseURI: "mongodb+srv://ejayawan22:kuKvYG2VfIEss9Fj@cluster0.yjbhaod.mongodb.net/?retryWrites=true&w=majority",
   appId: "123",
   masterKey: "1234",
   serverURL: `https://54.160.165.190/parse`,
