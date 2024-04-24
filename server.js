@@ -3,7 +3,7 @@ const { ParseServer } = require('parse-server');
 const ParseDashboard = require('parse-dashboard');
 const path = require("path");
 const fs = require("fs");
-const https = require('https')
+const https = require('https');
 
 const options = {
   key: fs.readFileSync(path.join(__dirname, 'private.key')),
@@ -30,6 +30,12 @@ const dashboardConfig = {
       masterKey: "1234",
       serverURL: `https://54.160.165.190/parse`,
       appName: "simple-node-app"
+    }
+  ],
+  users: [
+    {
+      user: 'admin',
+      pass: 'password'
     }
   ]
 };
