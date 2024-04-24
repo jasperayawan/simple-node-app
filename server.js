@@ -12,9 +12,10 @@ const options = {
   cert: fs.readFileSync(path.join(__dirname, 'certificate.crt')),
 };
 
+dotenv.config()
 const app = express();
 const port = 3000;
-dotenv.config()
+
 
 const parseServerOptions = {
   databaseURI: process.env.MONGO_URI,
