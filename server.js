@@ -13,6 +13,9 @@ const options = {
 const app = express();
 const port = 3000;
 
+// Print MongoDB URI for debugging
+console.log("Database URI:", parseServerOptions.databaseURI);
+
 const parseServerOptions = {
   databaseURI: "mongodb+srv://ejayawan22:kuKvYG2VfIEss9Fj@cluster0.yjbhaod.mongodb.net/?retryWrites=true&w=majority",
   appId: "123",
@@ -21,7 +24,14 @@ const parseServerOptions = {
   appName: "simple-node-app"
 };
 
-const api = new ParseServer(parseServerOptions);
+// Log any errors during MongoDB connection
+ParseServer.start(parseServerOptions, () => {
+  console.log("Parse Server is running");
+}).then(() => {
+  console.log("Parse Server started successfully");
+}).catch((error) => {
+  console.error("Error starting Parse Server:", error);
+});
 
 const dashboardConfig = {
   apps: [
