@@ -34,7 +34,7 @@ const dashboardConfig = {
   ]
 };
 
-app.use('/parse', api.app);
+app.use('/parse', api);
 
 app.use('/dashboard', new ParseDashboard(dashboardConfig));
 
