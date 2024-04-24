@@ -13,30 +13,30 @@ const options = {
 const app = express();
 const port = 3000;
 
-const parseServerOptions = {
-  databaseURI: "mongodb+srv://ejayawan22:kuKvYG2VfIEss9Fj@cluster0.yjbhaod.mongodb.net/?retryWrites=true&w=majority",
-  appId: "123",
-  masterKey: "1234",
-  serverURL: `https://54.160.165.190/parse`,
-  appName: "simple-node-app"
-};
 
-const api = new ParseServer(parseServerOptions);
+const api = new ParseServer({
+    databaseURI: "mongodb+srv://ejayawan22:kuKvYG2VfIEss9Fj@cluster0.yjbhaod.mongodb.net/?retryWrites=true&w=majority",
+    appId: "123",
+    masterKey: "1234",
+    serverURL: `https://54.160.165.190/parse`,
+    appName: "simple-node-app"
+});
 
-const dashboardConfig = {
-  apps: [
-    {
-      appId: "123",
-      masterKey: "1234",
-      serverURL: `https://54.160.165.190/parse`,
-      appName: "simple-node-app"
-    }
-  ]
-};
+const dashboardConfig = new ParseDashboard({
+    apps: [
+        {
+          appId: "123",
+          masterKey: "1234",
+          serverURL: `https://54.160.165.190/parse`,
+          appName: "simple-node-app"
+        }
+      ]
+})
 
-app.use('/parse', api);
+api.start();
 
-app.use('/dashboard', new ParseDashboard(dashboardConfig));
+app.use('/parse', api.app)
+app.use('/dashboard', dashboardConfig)
 
 app.get('/api', (req, res) => {
   res.send({
