@@ -40,7 +40,7 @@ app.use('/dashboard', new ParseDashboard(dashboardConfig));
 
 app.get('/api', (req, res) => {
   res.send({
-    name: 'jasper'
+    name: 'jaspers cute'
   });
 });
 
