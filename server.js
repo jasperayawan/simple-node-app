@@ -33,7 +33,7 @@ const port = 3000;
 // app.use('/dashboard', dashboardConfig)
 
 app.get("/.well-known/pki-validation/E771B5057075089B67FE5062EEA6AFAE.txt", (req, res) => {
-    res.sendFile("./home/ubuntu/simple-node-app/E771B5057075089B67FE5062EEA6AFAE.txt")
+    res.sendFile("/home/ubuntu/simple-node-app/E771B5057075089B67FE5062EEA6AFAE.txt")
 })
 
 
