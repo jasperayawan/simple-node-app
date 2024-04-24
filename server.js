@@ -14,7 +14,7 @@ const app = express();
 const port = 3000;
 
 // Print MongoDB URI for debugging
-console.log("Database URI:", parseServerOptions.databaseURI);
+
 
 const parseServerOptions = {
   databaseURI: "mongodb+srv://ejayawan22:kuKvYG2VfIEss9Fj@cluster0.yjbhaod.mongodb.net/?retryWrites=true&w=majority",
@@ -23,6 +23,8 @@ const parseServerOptions = {
   serverURL: `https://54.160.165.190/parse`,
   appName: "simple-node-app"
 };
+
+console.log("Database URI:", parseServerOptions.databaseURI);
 
 // Log any errors during MongoDB connection
 ParseServer.start(parseServerOptions, () => {
