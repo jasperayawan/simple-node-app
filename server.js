@@ -1,6 +1,8 @@
 const express = require("express");
 const { ParseServer } = require('parse-server');
 const ParseDashboard = require('parse-dashboard');
+const dotenv = require('dotenv')
+
 const path = require("path");
 const fs = require("fs");
 const https = require('https');
@@ -12,28 +14,17 @@ const options = {
 
 const app = express();
 const port = 3000;
-
-// Print MongoDB URI for debugging
-
+dotenv.config()
 
 const parseServerOptions = {
-  databaseURI: "mongodb+srv://ejayawan22:kuKvYG2VfIEss9Fj@cluster0.yjbhaod.mongodb.net/?retryWrites=true&w=majority",
+  databaseURI: process.env.MONGO_URI,
   appId: "123",
   masterKey: "1234",
   serverURL: `https://54.160.165.190/parse`,
   appName: "simple-node-app"
 };
 
-console.log("Database URI:", parseServerOptions.databaseURI);
-
-// Log any errors during MongoDB connection
-ParseServer.start(parseServerOptions, () => {
-  console.log("Parse Server is running");
-}).then(() => {
-  console.log("Parse Server started successfully");
-}).catch((error) => {
-  console.error("Error starting Parse Server:", error);
-});
+const api = new ParseServer(parseServerOptions);
 
 const dashboardConfig = {
   apps: [
