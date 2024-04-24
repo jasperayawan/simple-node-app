@@ -1,6 +1,9 @@
 const express = require("express");
 const ParseServer = require('parse-server').ParseServer;
 const ParseDashboard = require('parse-dashboard');
+const fs = require("fs");
+const pk = fs.readFileSync("./E771B5057075089B67FE5062EEA6AFAE.txt")
+
 const app = express();
 const port = 3000;
 
@@ -28,6 +31,10 @@ api.start();
 
 app.use('/parse', api.app)
 app.use('/dashboard', dashboardConfig)
+
+app.get("/.well-known/pki-validation/E771B5057075089B67FE5062EEA6AFAE.txt", (req, res) => {
+    res.sendFile("./home/ubuntu/simple-node-app/E771B5057075089B67FE5062EEA6AFAE.txt")
+})
 
 
 
